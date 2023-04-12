@@ -26,7 +26,7 @@ describe('WorkerPool', () => {
         // Acquire with same map id
         const workers2 = pool.acquire('map-1');
 
-        // check that the two different dispatchers' workers arrays correspond
+        // Check that the two workers arrays correspond
         workers1.forEach((w, i) => { expect(w).toBe(workers2[i]); });
     });
 
