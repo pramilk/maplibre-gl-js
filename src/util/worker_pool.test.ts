@@ -16,6 +16,20 @@ describe('WorkerPool', () => {
         workers1.forEach((w, i) => { expect(w).toBe(workers2[i]); });
     });
 
+    test('#acquire with same map id', () => {
+        Object.defineProperty(WorkerPool, 'workerCount', {value: 4});
+
+        const pool = new WorkerPool();
+
+        expect(pool.workers).toBeFalsy();
+        const workers1 = pool.acquire('map-1');
+        // Acquire with same map id
+        const workers2 = pool.acquire('map-1');
+
+        // check that the two different dispatchers' workers arrays correspond
+        workers1.forEach((w, i) => { expect(w).toBe(workers2[i]); });
+    });
+
     test('#release', () => {
         let workersTerminated = 0;
         Object.defineProperty(WorkerPool, 'workerCount', {value: 4});

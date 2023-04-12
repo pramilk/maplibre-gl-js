@@ -64,6 +64,7 @@ import type {ControlPosition, IControl} from './control/control';
 import type {MapGeoJSONFeature} from '../util/vectortile_to_geojson';
 import Terrain from '../render/terrain';
 import RenderToTexture from '../render/render_to_texture';
+import getGlobalWorkerPool from '../util/global_worker_pool';
 
 const version = packageJSON.version;
 /* eslint-enable no-use-before-define */
@@ -439,6 +440,8 @@ class Map extends Camera {
         this._clickTolerance = options.clickTolerance;
         this._pixelRatio = options.pixelRatio ?? devicePixelRatio;
 
+        // Kick start worker creation process.
+        getGlobalWorkerPool().acquire(this._mapId);
         this._imageQueueHandle = ImageRequest.addThrottleControl(() => this.isMoving());
 
         this._requestManager = new RequestManager(options.transformRequest);
