@@ -275,6 +275,11 @@ namespace ImageRequest {
             }
             image.onerror = image.onload = null;
         };
+        
+        // fetchPriority is experimental property supported on Chromium browsers from Version 102
+        // By default images are downloaded with priority low, where as fetch request downloads with priority high
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/fetchPriority
+        (image as any).fetchPriority = "high";
         image.src = url;
         return {
             cancel: () => {
