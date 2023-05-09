@@ -9,6 +9,7 @@
 - Reduce rendering calls on initial load. No reason to try rendering before style is loaded. ([#2464](https://github.com/maplibre/maplibre-gl-js/pull/2464))
 - Lazy load default style properties on demand to improve loading performance and reduce memory usage. ([#2476](https://github.com/maplibre/maplibre-gl-js/pull/2476))
 - Replace playwright with puppeteer ([#2494](https://github.com/maplibre/maplibre-gl-js/pull/2494))
+- Revert ([#2377](https://github.com/maplibre/maplibre-gl-js/pull/2377)), as it is causing raster tiles to not load in certain scenarios when user do a fast zoom operation using mouse wheel.
 - _...Add new stuff here..._
 
 ### 🐞 Bug fixes
