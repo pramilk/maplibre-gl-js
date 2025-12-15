@@ -66,7 +66,7 @@ jobs:
           node-version-file: '.nvmrc'
       - run: npm ci
       - run: npm run build-dist
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         if: success()
         with:
           name: build-dist-${{ matrix.os }}
@@ -110,7 +110,7 @@ jobs:
           verbose: true
       - name: Upload render test failure
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: render-test-report-${{ matrix.os }}-${{ matrix.split }}
           path: ${{ github.workspace }}/test/integration/render/results.html
